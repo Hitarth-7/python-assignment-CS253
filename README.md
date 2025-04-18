@@ -126,7 +126,8 @@ This program does the following.
   where:
 - A, B, C, D, E, F are randomly generated constants.
 - f1, f2, f3 are randomly chosen from {sin, cos, tan, log (valid for positive X),
-  square, cube}. 2. Generate visualizations to analyze patterns:
+  square, cube}.
+- Generate visualizations to analyze patterns:
 - A scatter plot of X vs Y .
 - A histogram of X with an appropriate number of bins.
 - A box plot of Y to detect outliers.
