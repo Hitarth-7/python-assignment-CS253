@@ -115,8 +115,9 @@ where A is an N × N matrix and B is an N × 1 vector
 
 ### RandomDatasetGenNPreprocessor.py
 
-This program does the following. 1. Generate a synthetic dataset representing environmental observations:
+This program does the following.
 
+- Generate a synthetic dataset representing environmental observations:
 - A dataset with N random points for two numerical variables X and Y .
 - X values should be uniformly distributed within a user-defined range.
 - Y values should be computed using a randomly generated mathematical function
@@ -132,9 +133,11 @@ This program does the following. 1. Generate a synthetic dataset representing en
 - A line plot of sorted X values against their corresponding Y values. 3. Enhance clarity by adding:
 - Proper plot titles.
 - Axis labels for better understanding.
-- Legends (if applicable). 4. Allow user customization:
+- Legends (if applicable).
+- Allows user customization:
 - The number of data points (N).
-- The range of values for X. 5. Ensure reproducibility by setting a random seed.
+- The range of values for X.
+- Ensure reproducibility by setting a random seed.
 
 ### Function Definitions for Random Dataset Generator and Preprocessor
 
