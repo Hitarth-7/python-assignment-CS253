@@ -59,16 +59,16 @@ follows:
 - Rock beats Scissors.
 - Scissors beats Paper.
 - Paper beats Rock.
-  Imagine you and your friend want to decide who gets the last slice of pizza. Instead of
+- Imagine you and your friend want to decide who gets the last slice of pizza. Instead of
   arguing, you both agree to play a fair Rock-Paper-Scissors game. The winner gets the pizza,
   and if it’s a tie, you play again.
 
 #### Function Definitions for Rock Paper Scissors game
 
-| Function Name                  | Purpose                                                                             |
-| ------------------------------ | ----------------------------------------------------------------------------------- |
-| `Rock_Paper_Scissors(user_in)` | Generates random response from the computer side and calculates the winner          |
-| `main()`                       | Manages user input, calls all necessary functions, and handles multiple test cases. |
+| Function Name                                      | Purpose                                                                                               |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `Rock_Paper_Scissors(user_in, wins, losses, ties)` | Generates random response from the computer side and calculates the winner as well as the total score |
+| `main()`                                           | Manages user input, calls all necessary functions, and handles multiple test cases.                   |
 
 ### SumOfNPrimes.py
 
@@ -131,7 +131,8 @@ This program does the following.
 - A scatter plot of X vs Y .
 - A histogram of X with an appropriate number of bins.
 - A box plot of Y to detect outliers.
-- A line plot of sorted X values against their corresponding Y values. 3. Enhance clarity by adding:
+- A line plot of sorted X values against their corresponding Y values.
+- Enhance clarity by adding:
 - Proper plot titles.
 - Axis labels for better understanding.
 - Legends (if applicable).
