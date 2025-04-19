@@ -24,9 +24,18 @@ def generate_dataset(N, x_min, x_max):
     D=random.uniform(-5, 5)
     E=random.uniform(-10, 10)
     F=random.uniform(-5, 5)
+
     
     #Randomly choose functions f1, f2, f3 from the set
     functions = [np.sin, np.cos, np.tan, np.log, lambda x: x**2, lambda x: x**3] #Declaring the functions list as specified
+    fns_log = [np.sin, np.cos, np.tan, lambda x: x**2, lambda x: x**3] #Declaring the functions without log to check for negative values
+    inf1=B*X #Local variable for input of f1
+    inf2=D*X #Local variable for input of f2
+    inf3=F*X #Local variable for input of f3
+    fin_in=np.array([inf1, inf2, inf3]) #Making an array to check for all input values if any negative or not
+    if np.any(fin_in <= 0): #Checking for any negative value in the dataset using any function of NumPy
+        functions=fns_log #If there exists any, replace functions choices with those without log
+    
     f1=random.choice(functions) #Randomly choose f1
     f2=random.choice(functions) #Randomly choose f2
     f3=random.choice(functions) #Randomly choose f3
@@ -34,17 +43,6 @@ def generate_dataset(N, x_min, x_max):
     #Function to apply log only if x is positive
     def safe_log(x):
         return np.log(x) if x > 0 else 0  # Return 0 if x<=0
-
-    #Condition to check for negative x using any func from NumPy
-    or_f1=f1 #First making local copy of f1 to pass to lambda function
-    or_f2=f2 #First making local copy of f2 to pass to lambda function
-    or_f3=f3 #First making local copy of f3 to pass to lambda function
-    #Passing the copied functions to lambda functions to check for negative values if the function is log o/w keep the function as it is 
-    #Need to make copies otherwise, calling it directly and assigning it makes infinite recursion
-    
-    f1 = np.vectorize(lambda x: safe_log(x) if or_f1 == np.log else or_f1(x)) #Replace with safe_log for f1
-    f2 = np.vectorize(lambda x: safe_log(x) if or_f2 == np.log else or_f2(x)) #Replace with safe_log for f2
-    f3 = np.vectorize(lambda x: safe_log(x) if or_f3 == np.log else or_f3(x)) #Replace with safe_log for f3
         
     Y = A * f1(B * X) + C * f2(D * X) + E * f3(F * X) #Calculating and generating the values of Y
     
@@ -101,10 +99,27 @@ def plot_line(X, Y):
     plt.show() #Display the plot
 
 def main():
-    set_random_seed(42) #Set the random seed for reproducibility
-    N=int(input("Enter N : ")) #Taking input as N
-    xmin=int(input("Enter xmin : ")) #Taking xmin input
-    xmax=int(input("Enter xmax : ")) #Taking xmax input
+    set_random_seed(29)
+    while(True):
+        try: #Trying to take int input
+            N=int(input("Enter N : ")) #Taking input as N
+            if N<=0: #If N negative
+                print("Please enter a positive value of N") #Error message display
+                continue
+        except ValueError: #If typecast unsuccessful
+            print("Please enter a Valid numerical N") #Error message display
+            continue
+        try: 
+            xmin=int(input("Enter xmin : ")) #Taking xmin input
+        except ValueError: #If typecast unsuccessful
+            print("Please enter valid numerical xmin") #Error message display
+            continue
+        try:
+            xmax=int(input("Enter xmax : ")) #Taking xmax input
+        except ValueError: #If typecast unsuccessful
+            print("Please enter valid numerical xmax") #Error message display
+            continue
+        break #Break if everything correct
     X, Y = generate_dataset(N, xmin, xmax) #Generating random data based on N, xmin and xmax
 
     plot_scatter(X, Y) #Plotting scatter plot

@@ -18,11 +18,33 @@ def solve_linear_system(A, B):
 
 #Function main
 def main():
-    n=int(input("Enter N : ")) #Taking input as n
-     #Taking inputA, space separated and converting to int by map and converting to list
-    inA = list(map(float, input("Enter entries of A, space separated and row wise in a single line").split())) #Taking input until the input is valid
-    #Taking inputB, space separated and converting to int by map and converting to list
-    inB = list(map(float, input("Enter entries of B, space separated and row wise in a single line").split())) #Taking input until the input is valid
+    flag=True
+    while(True):
+        try:
+            #Trying to take input as n
+            n=int(input("Enter N : ")) 
+            if n<=0: #Check for negative values
+                print("Enter some positive N") #Error message display
+                continue
+        except ValueError: #If typecast unsuccessful
+            print("Please Enter a valid numerical N") #Error message display
+            continue
+
+        try:
+            #Taking inputA, space separated and converting to int by map and converting to list
+            #Taking input until the input is valid
+            inA = list(map(float, input("Enter entries of A, space separated and row wise in a single line").split())) 
+        except ValueError: #If typecast unsuccessful
+            print("Please Enter Valid data for A") #Error message
+            continue
+        try:
+            #Taking inputB, space separated and converting to int by map and converting to list
+            #Taking input until the input is valid
+            inB = list(map(float, input("Enter entries of B, space separated and row wise in a single line").split())) 
+        except ValueError: #If typecast unsuccessful
+            print("Please enter valid data for B") #Error message
+            continue
+        break #Break loop if everything correct
     A=np.array(inA).reshape(n, n) #Converting the 1D input array A into matrix of n x n by reshape
     B=np.array(inB).reshape(n, 1) #Converting the 1D input array B into matrix of n x n by reshape
     solve_linear_system(A, B) #Solving the linear eqn AX=B
