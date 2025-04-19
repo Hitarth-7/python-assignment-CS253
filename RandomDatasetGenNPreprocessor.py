@@ -36,10 +36,15 @@ def generate_dataset(N, x_min, x_max):
         return np.log(x) if x > 0 else 0  # Return 0 if x<=0
 
     #Condition to check for negative x using any func from NumPy
-    if np.any(X <= 0):  # If there are non-positive X values, ensure log is only applied to positive X
-        f1 = np.vectorize(lambda x: safe_log(B * x) if f1 == np.log else f1(x)) #Replace with safe_log for f1
-        f2 = np.vectorize(lambda x: safe_log(D * x) if f2 == np.log else f2(x)) #Replace with safe_log for f2
-        f3 = np.vectorize(lambda x: safe_log(F * x) if f3 == np.log else f3(x)) #Replace with safe_log for f3
+    or_f1=f1 #First making local copy of f1 to pass to lambda function
+    or_f2=f2 #First making local copy of f2 to pass to lambda function
+    or_f3=f3 #First making local copy of f3 to pass to lambda function
+    #Passing the copied functions to lambda functions to check for negative values if the function is log o/w keep the function as it is 
+    #Need to make copies otherwise, calling it directly and assigning it makes infinite recursion
+    
+    f1 = np.vectorize(lambda x: safe_log(x) if or_f1 == np.log else or_f1(x)) #Replace with safe_log for f1
+    f2 = np.vectorize(lambda x: safe_log(x) if or_f2 == np.log else or_f2(x)) #Replace with safe_log for f2
+    f3 = np.vectorize(lambda x: safe_log(x) if or_f3 == np.log else or_f3(x)) #Replace with safe_log for f3
         
     Y = A * f1(B * X) + C * f2(D * X) + E * f3(F * X) #Calculating and generating the values of Y
     
