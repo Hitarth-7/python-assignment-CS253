@@ -18,7 +18,7 @@ def main():
         #First take the input which will be space separated data and split it using space as delimeter
         #Since the input by default will be strings, map each substring to an integer
         #Create a list out of the map
-        temperatures = list(map(int, input("Enter the data").split())) #Taking input until the input is valid
+        temperatures = list(map(int, input("Enter the data in single line space separated").split())) #Taking input until the input is valid
         if(len(temperatures)==0 or len(temperatures)==1): #Checking for dataset size = 0 or 1, invalid for mean, var and std dev calculation
             print("Please provide more than 1 values") #Printing error message
             continue
